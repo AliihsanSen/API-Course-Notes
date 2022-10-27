@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.*;
 
 public class Get05 extends RestfulBaseUrl {
 
@@ -22,17 +23,23 @@ public class Get05 extends RestfulBaseUrl {
     @Test
     public void get05() {
 
-        // https://restful-booker.herokuapp.com/booking?firstname=Ali&lastname=Şen
+        // https://restful-booker.herokuapp.com/booking?firstname=Ali&lastname=Cengiz
 
         // 1. Set The URL
         spec.pathParam("first", "booking").
-                queryParams("firstname", "Ali", "lastname", "Şen");
+                queryParams("firstname", "Ali", "lastname", "Cengiz");
 
         // 2. Set The Expected Data
 
         // 3. Send The Request And Get The Response
         Response response = given().spec(spec).when().get("/{first}");
         response.prettyPrint();
+
+        // 4. Do Assertion
+        assertEquals(200,response.getStatusCode());
+        assertTrue(response.asString().contains("bookingid"));
+
+
 
 
     }
