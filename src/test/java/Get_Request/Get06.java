@@ -2,6 +2,7 @@ package Get_Request;
 
 import Base_Url.RestfulBaseUrl;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -48,6 +49,8 @@ public class Get06 extends RestfulBaseUrl {
         response.prettyPrint();
 
         // 4. Do Assertion
+
+        // 1. YOL
         response.then().
                 assertThat().
                 statusCode(200).
@@ -59,5 +62,20 @@ public class Get06 extends RestfulBaseUrl {
                         "bookingdates.checkin", equalTo("2022-10-27"),
                         "bookingdates.checkout", equalTo("2022-11-07"),
                         "additionalneeds", equalTo("None"));
+
+        // 2. YOL : Jsonpath class'ının kullanimi.
+        JsonPath json=response.jsonPath();
+        assertEquals("Bradley", json.getString("firstname"));
+        assertEquals("Pearson",json.getString("lastname"));
+        assertEquals(132,json.getInt("totalprice"));
+        assertFalse(json.getBoolean("depositpaid")); // ==> assertEquals(false,json.getBoolean("depositpaid"));
+        assertEquals("2022-10-27",json.getString("bookingdates.checkin"));
+        assertEquals("2022-11-07",json.getString("bookingdates.checkout"));
+        assertEquals("None",json.getString("additionalneeds"));
+
+        // 3. YOL : Soft Assertion
+        // Soft Assert 3 adımda kullanılır.
+
+
     }
 }
