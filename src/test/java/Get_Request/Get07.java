@@ -38,7 +38,7 @@ public class Get07 extends JsonplaceholderBaseUrl {
 
         // 3. Send The Request And Get The Response
         Response response = given().spec(spec).when().get("/{first}");
-        // response.prettyPrint();
+        response.prettyPrint();
 
         // 4. Do Assertion
 
@@ -67,7 +67,8 @@ public class Get07 extends JsonplaceholderBaseUrl {
 
         // Assert that "delectus aut autem" is one of the titles whose id is less than 5 ==> id si 5 den kucuk olan datalarin birinin
         // basliginin "delectus aut autem" icerdigini dogrulayin.
-        assertTrue("Title'lardan herhangi bir tanesi delectus aut autem icermemektedir.", titles.contains("delectus aut autem"));
+        assertTrue("Id'si 5'ten kucuk olan Title'lardan herhangi bir tanesi delectus aut autem icermemektedir.",
+                titles.contains("delectus aut autem"));
 
 
     }
