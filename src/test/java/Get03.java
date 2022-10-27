@@ -1,3 +1,4 @@
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -37,7 +38,7 @@ public class Get03 extends JsonplaceholderBaseUrl {
 
         // Do Assertion
 
-        // 1 . YOL (Hard Assert)
+        // 1 . YOL (Hard Assert) ==> Ayrı ayrı body kullanılması halinde.
         response.then().
                 assertThat().
                 statusCode(200).
@@ -46,6 +47,14 @@ public class Get03 extends JsonplaceholderBaseUrl {
                 body("completed", equalTo(false)).
                 body("userId", equalTo(2));
 
-        // 2 . YOL ()
+        // 2 . YOL (Soft Assert) ==> Aynı body kullanılması halinde.
+        response.then().
+                assertThat().
+                statusCode(200).
+                contentType(ContentType.JSON).
+                body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit"),
+                        "completed", equalTo(false), "userId", equalTo(2));
+
+
     }
 }
