@@ -2,6 +2,7 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.CoreMatchers.*;
 
 public class Get03 extends JsonplaceholderBaseUrl {
 
@@ -33,5 +34,14 @@ public class Get03 extends JsonplaceholderBaseUrl {
         // Send the request ans Set request
         Response response = given().spec(spec).when().get("/{first}/{second}");
         response.prettyPrint();
+
+        // Do Assertion
+        response.then().
+                assertThat().
+                statusCode(200).
+                contentType("application/json").
+                body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit")).
+                body("completed", equalTo("false")).
+                body("userId", equalTo(2));
     }
 }
