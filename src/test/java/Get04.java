@@ -1,6 +1,11 @@
-import org.testng.annotations.Test;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.junit.Test;
 
-public class Get04 extends JsonplaceholderBaseUrl{
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+public class Get04 extends JsonplaceholderBaseUrl {
 
     /*
         Given
@@ -23,6 +28,15 @@ public class Get04 extends JsonplaceholderBaseUrl{
 
     @Test
     public void get04() {
+
+        // 1. Set The Url
+        spec.pathParam("first", "todos");
+
+        // 2. Set The expected Data ( Put, Patch ve Post)
+
+        // 3. Send The request And get The Response
+        Response response = (Response) given().spec(spec).when().accept(ContentType.JSON).get("/{first}");
+        response.prettyPrint();
 
     }
 }
