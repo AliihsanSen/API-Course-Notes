@@ -29,19 +29,23 @@ public class Get03 extends JsonplaceholderBaseUrl {
         // Set the URL
         spec.pathParams("first", "todos", "second", 23);
 
-        // Expected Data
+        // Set the Expected Data (Put, Patch, Post)
 
         // Send the request ans Set request
         Response response = given().spec(spec).when().get("/{first}/{second}");
         response.prettyPrint();
 
         // Do Assertion
+
+        // 1 . YOL (Hard Assert)
         response.then().
                 assertThat().
                 statusCode(200).
                 contentType("application/json").
                 body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit")).
-                body("completed", equalTo("false")).
+                body("completed", equalTo(false)).
                 body("userId", equalTo(2));
+
+        // 2 . YOL ()
     }
 }
