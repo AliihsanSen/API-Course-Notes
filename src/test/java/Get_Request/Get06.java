@@ -5,7 +5,8 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 public class Get06 extends RestfulBaseUrl {
@@ -26,9 +27,9 @@ public class Get06 extends RestfulBaseUrl {
     "lastname": "Pearson",
     "totalprice": 132,
     "depositpaid": false,
-    "bookingdates": {
-        "checkin": "2022-10-27",
-        "checkout": "2022-11-07"
+    "bookingdates": { ==> Outer JSON
+        "checkin": "2022-10-27", ==> Inner JSON
+        "checkout": "2022-11-07" ==> Inner JSON
     },
     "additionalneeds": "None"
 }
@@ -38,7 +39,7 @@ public class Get06 extends RestfulBaseUrl {
     public void get06() {
 
         // 1. Set The URL
-        spec.pathParams("firs", "booking", "second", 2325);
+        spec.pathParams("first", "booking", "second", 2325);
 
         // 2. Set The Expected Data (Put, Post and Patch)
 
@@ -51,8 +52,12 @@ public class Get06 extends RestfulBaseUrl {
                 assertThat().
                 statusCode(200).
                 contentType(ContentType.JSON).
-                body("")
-
-
+                body("firstname", equalTo("Bradley"),
+                        "lastname", equalTo("Pearson"),
+                        "totalprice", equalTo(132),
+                        "depositpaid", equalTo(false),
+                        "bookingdates.checkin", equalTo("2022-10-27"),
+                        "bookingdates.checkout", equalTo("2022-11-07"),
+                        "additionalneeds", equalTo("None"));
     }
 }
