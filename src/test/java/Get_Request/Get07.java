@@ -38,7 +38,7 @@ public class Get07 extends JsonplaceholderBaseUrl {
 
         // 3. Send The Request And Get The Response
         Response response = given().spec(spec).when().get("/{first}");
-        //response.prettyPrint();
+        response.prettyPrint();
 
         // 4. Do Assertion
 
