@@ -67,7 +67,7 @@ public class Get07 extends JsonplaceholderBaseUrl {
 
         // Assert that "delectus aut autem" is one of the titles whose id is less than 5 ==> id si 5 den kucuk olan datalarin birinin
         // basliginin "delectus aut autem" icerdigini dogrulayin.
-        assertTrue();
+        assertTrue("Title'lardan herhangi bir tanesi delectus aut autem icermemektedir.", titles.contains("delectus aut autem"));
 
 
     }
