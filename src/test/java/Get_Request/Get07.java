@@ -55,16 +55,19 @@ public class Get07 extends JsonplaceholderBaseUrl {
         assertEquals("Id 190'dan Buyuk Olan eslesmedi", 10, idList.size());
 
         // 3) Print all userIds whose ids are less than 5 on the console ==> id si 5 den kucuk olan tum userid lerini konsolunu yazdirin
-
+        List<Integer> userIdList = json.getList("findAll{it.id<5}.userId");
+        System.out.println("User Id'si 5'ten kucuk olan userId'ler : " + userIdList);
 
         // Assert that the number of userIds whose ids are less than 5 is 4 ==> id si 5 den kucuk olan 4 tane userId oldugunu dogrulayin
-
+        assertEquals("UserId'si 5'ten kucuk olan userId'ler 4 tane degil", 4, userIdList.size());
 
         // 4) Print all titles whose ids are less than 5 ==> ıd si 5 den kucuk olan tum basliklari yazdirin
-
+        List<String> titles = json.getList("findAll{it.id<5}.title");
+        System.out.println("Id'si 5'ten kucuk olan titlelar : " + titles);
 
         // Assert that "delectus aut autem" is one of the titles whose id is less than 5 ==> id si 5 den kucuk olan datalarin birinin
-        // basliginin "delectus aut autem" icerdigini dogrulayin
+        // basliginin "delectus aut autem" icerdigini dogrulayin.
+        assertTrue();
 
 
     }
