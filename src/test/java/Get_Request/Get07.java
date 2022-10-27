@@ -38,7 +38,7 @@ public class Get07 extends JsonplaceholderBaseUrl {
 
         // 3. Send The Request And Get The Response
         Response response = given().spec(spec).when().get("/{first}");
-        response.prettyPrint();
+        //response.prettyPrint();
 
         // 4. Do Assertion
 
@@ -70,6 +70,8 @@ public class Get07 extends JsonplaceholderBaseUrl {
         assertTrue("Id'si 5'ten kucuk olan Title'lardan herhangi bir tanesi delectus aut autem icermemektedir.",
                 titles.contains("delectus aut autem"));
 
+        assertTrue("Id'si 5'ten kucuk olan Title'lardan herhangi bir tanesi delectus aut autem icermemektedir.",
+                titles.stream().anyMatch(t -> t.equals("delectus aut autem")));
 
     }
 }
