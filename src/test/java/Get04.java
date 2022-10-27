@@ -46,6 +46,5 @@ public class Get04 extends JsonplaceholderBaseUrl {
                 body("id", hasSize(200),
                         "title", hasItem("quis eius est sint explicabo"),
                         "userId", hasItems(2, 7, 9));
-
     }
 }
