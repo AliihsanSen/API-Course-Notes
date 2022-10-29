@@ -27,12 +27,17 @@ public class Get08 {
         // Set the URL
         String url = "https://reqres.in/api/users/3";
 
+        // 2. Set The Expected Data (Put, Post and Patch)
+
+        // 3. Send The Request And Get The Response
         Response response = given().when().get(url);
         response.prettyPrint();
 
-        // HTTP Status Code should be 200
-        // Content Type should be JSON
-        // Status Line should be HTTP/1.1 200 OK
+        // 4. Do Assertion
+
+        /* HTTP Status Code should be 200
+           Content Type should be JSON
+           Status Line should be HTTP/1.1 200 OK */
         response.then().assertThat().statusCode(200).contentType(ContentType.JSON).statusLine("HTTP/1.1 200 OK");
 
     }
