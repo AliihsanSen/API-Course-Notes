@@ -1,5 +1,6 @@
 package Get_Request;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -27,6 +28,11 @@ public class Get08 {
         String url = "https://reqres.in/api/users/3";
 
         Response response = given().when().get(url);
+        response.prettyPrint();
+
+        // HTTP Status Code should be 200
+        // Content Type should be JSON
+        response.then().assertThat().statusCode(200).contentType(ContentType.JSON);
 
     }
 }
