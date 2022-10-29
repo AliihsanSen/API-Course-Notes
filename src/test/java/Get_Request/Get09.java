@@ -49,7 +49,7 @@ public class Get09 extends ReqresBaseUrl {
         assertEquals("cloudflare", response.header("Server"));
 
         // Response body should be empty
-        assertEquals()
+        assertEquals(0, response.asString().replaceAll("[^A-Za-z0-9]", "").length());
 
 
     }
