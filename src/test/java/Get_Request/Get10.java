@@ -1,10 +1,12 @@
 package Get_Request;
 
 import Base_Url.ReqresBaseUrl;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class Get10 extends ReqresBaseUrl {
 
@@ -40,9 +42,20 @@ public class Get10 extends ReqresBaseUrl {
         response.prettyPrint();
 
         // 4. Do Assertion
-        // HTTP Status code should be 404
-        // Status Line should be HTTP/1.1 404 Not Found
+        // HTTP Status Code should be 200
+        // Response format should be "application/json"
+        response.then().assertThat().statusCode(200).contentType(ContentType.JSON);
 
+        /*
+        "email" is "janet.weaver@reqres.in",
+        "first_name" is "Janet",
+        "last_name" is "Weaver",
+         "text" is "To keep ReqRes free, contributions towards server costs are appreciated!"
+         */
+        response.then().assertThat().body("data.email", equalTo("janet.weaver@reqres.in"),
+                "data.first_name", equalTo("Janet"),
+                "data.last_name", equalTo("Weaver"),
+                "support.text", equalTo("To keep ReqRes free, contributions towards server costs are appreciated!"));
 
 
     }
