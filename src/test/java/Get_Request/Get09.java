@@ -5,6 +5,8 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
+import static junit.framework.TestCase.*;
+import static org.hamcrest.Matchers.emptyString;
 
 public class Get09 extends ReqresBaseUrl {
        /*
@@ -39,11 +41,15 @@ public class Get09 extends ReqresBaseUrl {
         // HTTP Status code should be 404
         // Status Line should be HTTP/1.1 404 Not Found
         response.then().assertThat().statusCode(404).statusLine("HTTP/1.1 404 Not Found");
+        assertEquals(404, response.statusCode());
+        assertEquals("HTTP/1.1 404 Not Found", response.statusLine());
 
         // Server is "cloudflare"
         response.then().assertThat().header("Server", "cloudflare");
+        assertEquals("cloudflare", response.header("Server"));
 
         // Response body should be empty
+        assertEquals()
 
 
     }
