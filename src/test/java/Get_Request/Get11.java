@@ -1,7 +1,10 @@
 package Get_Request;
 
 import Base_Url.RestfulBaseUrl;
+import io.restassured.response.Response;
 import org.junit.Test;
+
+import static io.restassured.RestAssured.*;
 
 public class Get11 extends RestfulBaseUrl {
 
@@ -19,6 +22,19 @@ public class Get11 extends RestfulBaseUrl {
 
     @Test
     public void get11() {
+
+        // Set the URL
+        spec.pathParams("first", "booking").queryParams("firstname", "Almedin", "lastname", "Alikadic");
+
+        // 2. Set The Expected Data (Put, Post and Patch)
+
+        // 3. Send The Request And Get The Response
+        Response response = given().spec(spec).when().get("/{first}");
+        response.prettyPrint();
+
+        // 4. Do Assertion
+        // HTTP Status code should be 404
+        // Status Line should be HTTP/1.1 404 Not Found
 
     }
 }
