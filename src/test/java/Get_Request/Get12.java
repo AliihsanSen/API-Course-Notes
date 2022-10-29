@@ -2,6 +2,7 @@ package Get_Request;
 
 import Base_Url.ReqresBaseUrl;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
 import org.testng.asserts.SoftAssert;
@@ -55,6 +56,9 @@ public class Get12 extends ReqresBaseUrl {
 
         // Response body should be like;(Soft Assertion)
         SoftAssert softAssert = new SoftAssert();
+        JsonPath jsonPath = response.jsonPath();
+        System.out.println(jsonPath.getInt("data.id"));
+
 
     }
 }
