@@ -73,5 +73,7 @@ public class Get07 extends JsonplaceholderBaseUrl {
         assertTrue("Id'si 5'ten kucuk olan Title'lardan herhangi bir tanesi delectus aut autem icermemektedir.",
                 titles.stream().anyMatch(t -> t.equals("delectus aut autem")));
 
+
+
     }
 }
