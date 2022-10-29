@@ -57,7 +57,14 @@ public class Get12 extends ReqresBaseUrl {
         // Response body should be like;(Soft Assertion)
         SoftAssert softAssert = new SoftAssert();
         JsonPath jsonPath = response.jsonPath();
-        softAssert.assertEquals("data.id", "3");
+        softAssert.assertEquals(jsonPath.getInt("data.id"), 3, "Id degeri dogru degil");
+        softAssert.assertEquals(jsonPath.getString("data.name"), "true red", "Name degeri dogru degil");
+        softAssert.assertEquals(jsonPath.getString("data.year"), "2002", "Year degeri dogru degil");
+        softAssert.assertEquals(jsonPath.getString("data.color"), "#BF1932", "color degeri dogru degil");
+        softAssert.assertEquals(jsonPath.getString("data.pantone_value"), "19-1664", "pantone_value degeri dogru degil");
+        softAssert.assertEquals(jsonPath.getString("support.url"), "https://reqres.in/#support-heading", "url degeri dogru degil");
+        softAssert.assertEquals(jsonPath.getString("support.text"), "To keep ReqRes free, contributions towards server costs are appreciated!", "text degeri dogru degil");
+        softAssert.assertAll();
 
     }
 }
