@@ -5,6 +5,8 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.*;
 
 public class Get11 extends RestfulBaseUrl {
 
@@ -33,8 +35,11 @@ public class Get11 extends RestfulBaseUrl {
         response.prettyPrint();
 
         // 4. Do Assertion
-        // HTTP Status code should be 404
-        // Status Line should be HTTP/1.1 404 Not Found
+        // HTTP Status code should be 200
+        response.then().assertThat().statusCode(200);
+
+        // Among the data there should be someone whose firstname is "Almedin" and lastname is "Alikadic"
+        assertTrue(response.asString().contains("bookingid"));
 
     }
 }
