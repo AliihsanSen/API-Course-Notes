@@ -32,7 +32,8 @@ public class Get08 {
 
         // HTTP Status Code should be 200
         // Content Type should be JSON
-        response.then().assertThat().statusCode(200).contentType(ContentType.JSON);
+        // Status Line should be HTTP/1.1 200 OK
+        response.then().assertThat().statusCode(200).contentType(ContentType.JSON).statusLine("HTTP/1.1 200 OK");
 
     }
 }
