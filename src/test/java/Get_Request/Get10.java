@@ -1,8 +1,12 @@
 package Get_Request;
 
+import Base_Url.ReqresBaseUrl;
+import io.restassured.response.Response;
 import org.junit.Test;
 
-public class Get10 {
+import static io.restassured.RestAssured.given;
+
+public class Get10 extends ReqresBaseUrl {
 
     /*
    Given
@@ -25,6 +29,21 @@ public class Get10 {
 
     @Test
     public void get10() {
+
+        // Set the URL
+        spec.pathParams("first", "api", "second", "users", "third", 2);
+
+        // 2. Set The Expected Data (Put, Post and Patch)
+
+        // 3. Send The Request And Get The Response
+        Response response = given().spec(spec).when().get("/{first}/{second}/{third}");
+        response.prettyPrint();
+
+        // 4. Do Assertion
+        // HTTP Status code should be 404
+        // Status Line should be HTTP/1.1 404 Not Found
+
+
 
     }
 }
