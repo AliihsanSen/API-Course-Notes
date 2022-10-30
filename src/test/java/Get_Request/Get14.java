@@ -1,6 +1,12 @@
 package Get_Request;
 
-public class Get14 {
+import Base_Url.JsonplaceholderBaseUrl;
+import io.restassured.response.Response;
+import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
+
+public class Get14 extends JsonplaceholderBaseUrl {
 
     // De-Serialization: Json datayı Java objesine çevirme
     // Serialization: Java objesini Json formatına çevirme.
@@ -27,4 +33,18 @@ public class Get14 {
                 "completed": false
             }
      */
+
+    @Test
+    public void get14() {
+
+        // Set the URL
+        spec.pathParams("first", "todos", "second", 2);
+
+        // 2. Set The Expected Data (Put, Post and Patch)
+
+        // 3. Send The Request And Get The Response
+        Response response = given().spec(spec).when().get("/{first}/{second}");
+        response.prettyPrint();
+
+    }
 }
