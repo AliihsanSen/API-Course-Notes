@@ -1,6 +1,7 @@
 package Get_Request;
 
 import Base_Url.ReqresBaseUrl;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -38,8 +39,12 @@ public class Get13 extends ReqresBaseUrl {
 
         // 4. Do Assertion
         // 1)Status code is 200
+        JsonPath jsonPath = response.jsonPath();
         assertEquals(200,response.getStatusCode());
 
         // 2)Print all pantone_values
+        System.out.println(jsonPath.getList("data.pantone_value"));
+
+
     }
 }
