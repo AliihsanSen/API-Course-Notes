@@ -55,7 +55,11 @@ public class Get13 extends ReqresBaseUrl {
         assertEquals(3,ids.size());
 
         // 4) Print all names whose ids are less than 3 on the console
+        List<String> names = jsonPath.getList("data.findAll{it.id<3}.name");
+        System.out.println("names = " + names);
 
+        // Assert that the number of names whose ids are less than 3 is 2
+        assertEquals(2,names.size());
 
     }
 }
