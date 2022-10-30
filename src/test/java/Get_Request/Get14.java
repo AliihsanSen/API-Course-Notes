@@ -55,5 +55,7 @@ public class Get14 extends JsonplaceholderBaseUrl {
         Response response = given().spec(spec).when().get("/{first}/{second}");
         response.prettyPrint();
 
+        // 4. Do Assertion
+
     }
 }
