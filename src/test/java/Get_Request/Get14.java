@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.*;
 
 public class Get14 extends JsonplaceholderBaseUrl {
 
@@ -56,6 +57,7 @@ public class Get14 extends JsonplaceholderBaseUrl {
         response.prettyPrint();
 
         // 4. Do Assertion
+        assertEquals(200, response.statusCode());
 
     }
 }
