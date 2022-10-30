@@ -58,6 +58,14 @@ public class Get14 extends JsonplaceholderBaseUrl {
 
         // 4. Do Assertion
         assertEquals(200, response.statusCode());
+        Map<String, Object> actualData = response.as(HashMap.class);//De-Serialization
+        System.out.println("actualData = " + actualData);
+        assertEquals(expectedData.get("userId"),actualData.get("userId"));
+        assertEquals(expectedData.get("id"),actualData.get("id"));
+        assertEquals(expectedData.get("title"),actualData.get("title"));
+        assertEquals(expectedData.get("completed"),actualData.get("completed"));
+        assertEquals("1.1 vegur", response.header("Via"));
+        assertEquals("cloudflare", response.header("Server"));
 
     }
 }
