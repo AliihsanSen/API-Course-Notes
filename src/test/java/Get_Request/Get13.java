@@ -60,6 +60,5 @@ public class Get13 extends ReqresBaseUrl {
 
         // Assert that the number of names whose ids are less than 3 is 2
         assertEquals(2,names.size());
-
     }
 }
