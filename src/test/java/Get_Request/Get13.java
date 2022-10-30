@@ -1,8 +1,13 @@
 package Get_Request;
 
+import Base_Url.ReqresBaseUrl;
+import io.restassured.response.Response;
 import org.junit.Test;
 
-public class Get13 {
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
+
+public class Get13 extends ReqresBaseUrl {
     
      /*
    Given
@@ -21,5 +26,20 @@ public class Get13 {
 
     @Test
     public void name() {
+
+        // Set the URL
+        spec.pathParams("first", "api", "second", "unknown");
+
+        // 2. Set The Expected Data (Put, Post and Patch)
+
+        // 3. Send The Request And Get The Response
+        Response response = given().spec(spec).when().get("/{first}/{second}");
+        response.prettyPrint();
+
+        // 4. Do Assertion
+        // 1)Status code is 200
+        assertEquals(200,response.getStatusCode());
+
+        // 2)Print all pantone_values
     }
 }
