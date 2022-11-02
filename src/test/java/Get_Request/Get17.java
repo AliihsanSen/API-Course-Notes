@@ -45,7 +45,7 @@ public class Get17 extends GoRestBaseUrl {
 
         // 2. Set The Expected Data (Put, Post and Patch)
         GoRestTestData obj = new GoRestTestData();
-        Map<String, String> dataKeyMap = obj.dataKeyMap("Prof. Bala Pilla", "pilla_prof_bala@zemlak.io", "female", "active");
+        Map<String, String> dataKeyMap = obj.dataKeyMapMet("Prof. Bala Pilla", "pilla_prof_bala@zemlak.io", "female", "active");
         Map<String, Object> expectedData = obj.expectedDataMethod(null, dataKeyMap);
         System.out.println(expectedData);
 
