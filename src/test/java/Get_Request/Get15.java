@@ -1,6 +1,7 @@
 package Get_Request;
 
 import Base_Url.JsonplaceholderBaseUrl;
+import Test_Data.JsonPlaceHolderTestData;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -46,12 +47,7 @@ public class Get15 extends JsonplaceholderBaseUrl {
         spec.pathParams("first", "todos", "second", 2);
 
         // 2. Set The Expected Data (Put, Post and Patch)
-        Map<String, Object> expectedData = new HashMap<>();
-        expectedData.put("userId", 1);
-        expectedData.put("id", 2);
-        expectedData.put("title", "quis ut nam facilis et officia qui");
-        expectedData.put("completed", false);
-        System.out.println("expectedData = " + expectedData);
+        JsonPlaceHolderTestData expectedData = new JsonPlaceHolderTestData();
 
         // 3. Send The Request And Get The Response
         Response response = given().spec(spec).when().get("/{first}/{second}");
