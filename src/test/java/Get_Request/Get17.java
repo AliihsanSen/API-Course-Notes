@@ -39,16 +39,21 @@ public class Get17 extends GoRestBaseUrl {
 
     @Test
     public void get10() {
+
+        // Set the URL
         spec.pathParams("first", "users", "second", 2986);
 
+        // 2. Set The Expected Data (Put, Post and Patch)
         GoRestTestData obj = new GoRestTestData();
         Map<String, String> dataKeyMap = obj.dataKeyMap("Navin Talwar", "navin_talwar@mclaughlin.name", "male", "inactive");
         Map<String, Object> expectedData = obj.expectedDataMethod(null, dataKeyMap);
         System.out.println(expectedData);
 
+        // 3. Send The Request And Get The Response
         Response response = given().spec(spec).when().get("/{first}/{second}");
         response.prettyPrint();
 
+        // 4. Do Assertion
         Map<String, Object> actualData = response.as(HashMap.class);
         System.out.println("actualData = " + actualData);
         assertEquals(expectedData.get("meta"), actualData.get("meta"));
