@@ -47,7 +47,10 @@ public class Get15 extends JsonplaceholderBaseUrl {
         spec.pathParams("first", "todos", "second", 2);
 
         // 2. Set The Expected Data (Put, Post and Patch)
-        JsonPlaceHolderTestData expectedData = new JsonPlaceHolderTestData();
+        JsonPlaceHolderTestData objJsonPlcHldr = new JsonPlaceHolderTestData();
+
+        Map<String,Object> expectedData = objJsonPlcHldr.expectedDataMethod(1,"quis ut nam facilis et officia qui",false);
+        System.out.println(expectedData);
 
         // 3. Send The Request And Get The Response
         Response response = given().spec(spec).when().get("/{first}/{second}");
