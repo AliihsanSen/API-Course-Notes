@@ -1,5 +1,7 @@
 package Post_Request;
 
+import org.junit.Test;
+
 public class Post01 {
 
      /*
@@ -21,5 +23,11 @@ public class Post01 {
                                "completed": false,
                                "id": 201
                                }
-*/
+     */
+
+    @Test
+    public void post01() {
+
+
+    }
 }
