@@ -1,8 +1,9 @@
 package Get_Request;
 
+import Base_Url.GoRestBaseUrl;
 import org.junit.Test;
 
-public class Get18 {
+public class Get18 extends GoRestBaseUrl {
 
     /*
     Given
@@ -26,5 +27,11 @@ public class Get18 {
     @Test
     public void get18() {
 
+        // 1. Set The URL
+        spec.pathParams("first", "users");
+
+        // 2. Set The Expected Data ( put, post, patch)
+        // 3. Send The Request And Get The Response
+        // 4. Do Assertion
     }
 }
