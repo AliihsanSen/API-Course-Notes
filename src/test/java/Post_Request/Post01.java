@@ -2,7 +2,15 @@ package Post_Request;
 
 import Base_Url.JsonplaceholderBaseUrl;
 import Test_Data.JsonPlaceHolderTestData;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static io.restassured.RestAssured.*;
+import static org.junit.Assert.*;
 
 public class Post01 extends JsonplaceholderBaseUrl {
 
@@ -35,8 +43,17 @@ public class Post01 extends JsonplaceholderBaseUrl {
 
         // 2. Set The Expected Data ( put, post, patch)
         JsonPlaceHolderTestData obj = new JsonPlaceHolderTestData();
-        obj.expectedDataMethod(55, "Tidy your room", false);
+        Map<String, Object> expectedData = obj.expectedDataMethod(55, "Tidy your room", false);
 
+        // 3. Send The Request And Get The Response
+        Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedData).when().post("/{first}");
+        response.prettyPrint();
 
+        // 4. Do Assertion
+        Map<String, Object> actualData = response.as(HashMap.class);
+
+        assertEquals(expectedData.get("completed"),actualData.get("completed"));
+        assertEquals(expectedData.get("title"),actualData.get("title"));
+        assertEquals(expectedData.get("userId"),actualData.get("userId"));
     }
 }
