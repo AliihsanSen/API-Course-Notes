@@ -4,8 +4,11 @@ import Base_Url.GoRestBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
 
-import static io.restassured.RestAssured.given;
+import java.util.List;
+
+import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 public class Get18 extends GoRestBaseUrl {
 
@@ -23,7 +26,7 @@ public class Get18 extends GoRestBaseUrl {
     And
         We have at least one "active" status
     And
-        Pres. Amarnath Dhawan, Sujata Chaturvedi and Navin Panicker are among the users
+        "Pres. Amarnath Dhawan","Sujata Chaturvedi","Navin Panicker" are among the users
     And
         The female users are less than or equals to male users
  */
@@ -47,6 +50,26 @@ public class Get18 extends GoRestBaseUrl {
                 statusCode(200).
                 body("meta.pagination.limit", equalTo(10),
                         "meta.pagination.links.current", equalTo("https://gorest.co.in/public/v1/users?page=1"),
-                        "data",hasSize(10));
+                        "data", hasSize(10), "data.status", hasItem("active"),
+                        "data.name", hasItems("Pres. Amarnath Dhawan", "Sujata Chaturvedi", "Navin Panicker"));
+
+        // Kadın ve Erkek sayılarını karşılaştıralım.
+
+        // 1. YOL
+        List<String> genders = response.jsonPath().getList("data.gender");
+
+        int male = 0;
+        int female = 0;
+        for (String each : genders) {
+            if (each.equalsIgnoreCase("female")) {
+                female++;
+            } else if (each.equalsIgnoreCase("male")) {
+                male++;
+            }
+        }
+        System.out.println("male = " + male);
+        System.out.println("female = " + female);
+
+        assertTrue(female <= genders.size() - female);
     }
 }
