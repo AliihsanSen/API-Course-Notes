@@ -1,4 +1,4 @@
-package Get_Request;
+package Get_Request_Practice;
 
 import io.restassured.response.Response;
 import org.junit.Assert;
