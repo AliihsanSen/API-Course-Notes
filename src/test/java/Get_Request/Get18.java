@@ -5,7 +5,7 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
 public class Get18 extends GoRestBaseUrl {
 
@@ -45,6 +45,8 @@ public class Get18 extends GoRestBaseUrl {
                 then().
                 assertThat().
                 statusCode(200).
-                body("meta.pagination.limit",equalTo(10));
+                body("meta.pagination.limit", equalTo(10),
+                        "meta.pagination.links.current", equalTo("https://gorest.co.in/public/v1/users?page=1"),
+                        "data",hasSize(10));
     }
 }
