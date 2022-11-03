@@ -22,7 +22,7 @@ public class Get18 extends GoRestBaseUrl {
     And
         We have at least one "active" status
     And
-        Niranjan Gupta, Samir Namboothiri and Gandharva Kaul are among the users
+        Pres. Amarnath Dhawan, Sujata Chaturvedi and Navin Panicker are among the users
     And
         The female users are less than or equals to male users
  */
@@ -40,5 +40,11 @@ public class Get18 extends GoRestBaseUrl {
         response.prettyPrint();
 
         // 4. Do Assertion
+        response.
+                then().
+                assertThat().
+                statusCode(200).
+                body()
+
     }
 }
