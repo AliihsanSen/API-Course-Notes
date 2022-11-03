@@ -1,7 +1,10 @@
 package Get_Request;
 
 import Base_Url.GoRestBaseUrl;
+import io.restassured.response.Response;
 import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
 
 public class Get18 extends GoRestBaseUrl {
 
@@ -31,7 +34,11 @@ public class Get18 extends GoRestBaseUrl {
         spec.pathParams("first", "users");
 
         // 2. Set The Expected Data ( put, post, patch)
+
         // 3. Send The Request And Get The Response
+        Response response = given().spec(spec).when().get("/{first}");
+        response.prettyPrint();
+
         // 4. Do Assertion
     }
 }
