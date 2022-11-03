@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class Get18 extends GoRestBaseUrl {
 
@@ -44,7 +45,6 @@ public class Get18 extends GoRestBaseUrl {
                 then().
                 assertThat().
                 statusCode(200).
-                body()
-
+                body("meta.pagination.limit",equalTo(10));
     }
 }
