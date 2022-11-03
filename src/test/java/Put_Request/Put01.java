@@ -6,9 +6,11 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.*;
 
 public class Put01 extends JsonplaceholderBaseUrl {
 
@@ -47,6 +49,11 @@ public class Put01 extends JsonplaceholderBaseUrl {
         response.prettyPrint();
 
         // 4. Do Assertion
+        Map<String, Object> actualData = response.as(HashMap.class);
+
+        assertEquals(expectedData.get("userId"),actualData.get("userId"));
+        assertEquals(expectedData.get("title"),actualData.get("title"));
+        assertEquals(expectedData.get("completed"),actualData.get("completed"));
 
 
     }
