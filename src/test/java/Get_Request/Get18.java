@@ -71,5 +71,9 @@ public class Get18 extends GoRestBaseUrl {
         System.out.println("female = " + female);
 
         assertTrue(female <= genders.size() - female);
+
+        // 2. YOL ==> Kadın ve Erkek sayılarını Grovy ile bulalım.
+        List<String> femaleNames = response.jsonPath().getList("data.findAll{it.gender=='female'}.name");
+        System.out.println("femaleNames = " + femaleNames);
     }
 }
