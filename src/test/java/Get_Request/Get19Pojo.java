@@ -3,7 +3,10 @@ package Get_Request;
 import Base_Url.RestfulBaseUrl;
 import Pojos.BookingDatesPojo;
 import Pojos.BookingPojo;
+import io.restassured.response.Response;
 import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
 
 public class Get19Pojo extends RestfulBaseUrl {
 
@@ -39,8 +42,11 @@ public class Get19Pojo extends RestfulBaseUrl {
         BookingDatesPojo bookingDatesPojo = new BookingDatesPojo("2018-01-01", "2019-01-01");
         System.out.println(bookingDatesPojo.toString());
         BookingPojo bookingPojo = new BookingPojo("Dane", "Combs", 111, true, bookingDatesPojo,"Breakfast");
+        System.out.println(bookingPojo);
 
         // 3. Send The Request And Get The Response
+        Response response = given().spec(spec).when().get("/{first}/{second}");
+        response.prettyPrint();
 
     }
 }
