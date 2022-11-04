@@ -58,4 +58,15 @@ public class BookingPojo {
     public void setBookingdates(BookingDatesPojo bookingdates) {
         this.bookingdates = bookingdates;
     }
+
+    @Override
+    public String toString() {
+        return "BookingPojo{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", totalprice=" + totalprice +
+                ", depositpaid=" + depositpaid +
+                ", bookingdates=" + bookingdates +
+                '}';
+    }
 }
