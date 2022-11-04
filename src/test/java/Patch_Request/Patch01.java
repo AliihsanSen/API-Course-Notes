@@ -1,8 +1,18 @@
 package Patch_Request;
 
+import Base_Url.JsonplaceholderBaseUrl;
+import Test_Data.JsonPlaceHolderTestData;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.Test;
 
-public class Patch01 {
+import java.util.HashMap;
+import java.util.Map;
+
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
+
+public class Patch01 extends JsonplaceholderBaseUrl {
 
      /*
     Given
@@ -24,6 +34,26 @@ public class Patch01 {
 
     @Test
     public void patch01() {
+
+        // Set the Url
+        spec.pathParams("first", "todos", "second", 198);
+
+        // Set the Expected Data
+        JsonPlaceHolderTestData obj = new JsonPlaceHolderTestData();
+        Map<String, Object> expectedData = obj.expectedDataMethod(null, "Wash the dishes", null);
+        System.out.println("expectedData = " + expectedData);
+
+        // Send the Request and Get the Response
+        Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedData).when().patch("/{first}/{second}");
+        response.prettyPrint();
+
+        // Do Assertion
+        Map<String, Object> actualData = response.as(HashMap.class);
+        System.out.println("actualData = " + actualData);
+
+        assertEquals(200, response.getStatusCode());
+        assertEquals(expectedData.get("title"), actualData.get("title"));
+
 
     }
 }
