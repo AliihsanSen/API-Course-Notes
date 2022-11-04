@@ -5,22 +5,26 @@ import java.util.Map;
 
 public class RestfulTestData {
 
-    public Map<String, String> bookingDatesMethod(String checkin, String checkout) {
+    public Map<String,String> bookingdatesMethod(String checkin, String checkout){
 
-        Map<String, String> bookingDatesMap = new HashMap<String, String>();
-        bookingDatesMap.put("checkin", checkin);
-        bookingDatesMap.put("checkout", checkout);
-        return bookingDatesMap;
+        Map<String,String> bookingdatesMap = new HashMap<>();
+        bookingdatesMap.put("checkin",checkin);
+        bookingdatesMap.put("checkout",checkout);
+
+        return bookingdatesMap;
     }
 
-    public Map<String, Object> expectedDataMethod(String name,String lastname, Integer totalprice, Boolean depositpaid, Map<String, String> bookingDates) {
+    public Map<String,Object> expectedDataMethod(String firstname, String lastname, Integer totalprice, Boolean depositpaid, Map<String ,String> bookingdates){
 
-        Map<String, Object> expectedDataMap = new HashMap<String, Object>();
-        expectedDataMap.put("name", name);
-        expectedDataMap.put("lastname", lastname);
-        expectedDataMap.put("totalprice", totalprice);
-        expectedDataMap.put("depositpaid", depositpaid);
-        expectedDataMap.put("bookingDates", bookingDates);
+        Map<String ,Object> expectedDataMap = new HashMap<>();
+        expectedDataMap.put("firstname",firstname);
+        expectedDataMap.put("lastname",lastname);
+        expectedDataMap.put("totalprice",totalprice);
+        expectedDataMap.put("depositpaid",depositpaid);
+        expectedDataMap.put("bookingdates",bookingdates);
+
         return expectedDataMap;
     }
+
+
 }
