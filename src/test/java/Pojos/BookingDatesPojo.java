@@ -16,5 +16,29 @@ public class BookingDatesPojo {
     }
 
     // 3-) Public Getter ve Setter methodlarini oluşturuyoruz.
+    public String getCheckin() {
+        return checkin;
+    }
 
+    public void setCheckin(String checkin) {
+        this.checkin = checkin;
+    }
+
+    public String getCheckout() {
+        return checkout;
+    }
+
+    public void setCheckout(String checkout) {
+        this.checkout = checkout;
+    }
+
+    // 4-) toString() methodunu oluşturuyoruz.
+
+    @Override
+    public String toString() {
+        return "BookingDatesPojo{" +
+                "checkin='" + checkin + '\'' +
+                ", checkout='" + checkout + '\'' +
+                '}';
+    }
 }
