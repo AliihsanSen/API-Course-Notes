@@ -16,5 +16,8 @@ public class BookingPojo {
         this.bookingdates = bookingdates;
     }
 
+    public BookingPojo() {
+    }
+
 
 }
