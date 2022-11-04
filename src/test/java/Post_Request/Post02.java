@@ -49,14 +49,14 @@ public class Post02 extends RestfulBaseUrl {
     */
 
     @Test
-    public void post02(){
+    public void post02() {
         //Set the Url
-        spec.pathParam("first","booking");
+        spec.pathParam("first", "booking");
 
         //Set the Expected Data
         RestfulTestData obj = new RestfulTestData();
-        Map<String,String > bookingdatesMap = obj.bookingdatesMethod("2021-09-09", "2021-09-21");
-        Map<String,Object> expectedData = obj.expectedDataMethod("John","Doe",11111,true,bookingdatesMap);
+        Map<String, String> bookingdatesMap = obj.bookingdatesMethod("2021-09-09", "2021-09-21");
+        Map<String, Object> expectedData = obj.expectedDataMethod("John", "Doe", 11111, true, bookingdatesMap);
         System.out.println("expectedData = " + expectedData);
 
         //Send the Request and Get the Response
@@ -64,16 +64,16 @@ public class Post02 extends RestfulBaseUrl {
         response.prettyPrint();
 
         //Do Assertion
-        Map<String , Object> actualData =response.as(HashMap.class);//De-Serialization
+        Map<String, Object> actualData = response.as(HashMap.class);//De-Serialization
         System.out.println("actualData = " + actualData);
 
-        assertEquals(expectedData.get("firstname"),     ((Map)actualData.get("booking")).get("firstname")    );
-        assertEquals(expectedData.get("lastname"),     ((Map)actualData.get("booking") ).get("lastname")    );
-        assertEquals(expectedData.get("totalprice"),     ((Map)actualData.get("booking") ).get("totalprice")    );
-        assertEquals(expectedData.get("depositpaid"),     ((Map)actualData.get("booking") ).get("depositpaid")    );
+        assertEquals(expectedData.get("firstname"), ((Map) actualData.get("booking")).get("firstname"));
+        assertEquals(expectedData.get("lastname"), ((Map) actualData.get("booking")).get("lastname"));
+        assertEquals(expectedData.get("totalprice"), ((Map) actualData.get("booking")).get("totalprice"));
+        assertEquals(expectedData.get("depositpaid"), ((Map) actualData.get("booking")).get("depositpaid"));
 
-        assertEquals(bookingdatesMap.get("checkin"),  ((Map)((Map)actualData.get("booking")).get("bookingdates")).get("checkin")  );
-        assertEquals(bookingdatesMap.get("checkout"),  ((Map)((Map)actualData.get("booking")).get("bookingdates")).get("checkout")  );
+        assertEquals(bookingdatesMap.get("checkin"), ((Map) ((Map) actualData.get("booking")).get("bookingdates")).get("checkin"));
+        assertEquals(bookingdatesMap.get("checkout"), ((Map) ((Map) actualData.get("booking")).get("bookingdates")).get("checkout"));
 
     }
 }
