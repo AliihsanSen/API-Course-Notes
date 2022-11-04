@@ -41,12 +41,17 @@ public class Get19Pojo extends RestfulBaseUrl {
         // 2. Set The Expected Data ( put, post, patch)
         BookingDatesPojo bookingDatesPojo = new BookingDatesPojo("2018-01-01", "2019-01-01");
         System.out.println(bookingDatesPojo.toString());
-        BookingPojo bookingPojo = new BookingPojo("Dane", "Combs", 111, true, bookingDatesPojo,"Breakfast");
-        System.out.println(bookingPojo);
+        BookingPojo expectedData = new BookingPojo("Dane", "Combs", 111, true, bookingDatesPojo, "Breakfast");
+        System.out.println(expectedData);
 
         // 3. Send The Request And Get The Response
         Response response = given().spec(spec).when().get("/{first}/{second}");
         response.prettyPrint();
+
+        // 4. Do Assertion
+        BookingPojo actualData = response.as(BookingPojo.class);
+        System.out.println("actualData = " + actualData);
+
 
     }
 }
