@@ -1,14 +1,18 @@
 package Post_Request;
 
+
 import Base_Url.RestfulBaseUrl;
 import Test_Data.RestfulTestData;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 
+
+import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class Post02 extends RestfulBaseUrl {
 
@@ -45,20 +49,31 @@ public class Post02 extends RestfulBaseUrl {
     */
 
     @Test
-    public void post02() {
+    public void post02(){
+        //Set the Url
+        spec.pathParam("first","booking");
 
-        // 1. Set The URL
-        spec.pathParam("first", "booking");
-
-        // 2. Set The Expected Data ( put, post, patch)
+        //Set the Expected Data
         RestfulTestData obj = new RestfulTestData();
-        Map<String, String> bookingDatesTestMap = obj.bookingDatesMethod("2021-09-09", "2021-09-21");
-        Map<String, Object> expectedData = obj.expectedDataMethod("John", "Doe", 11111, true, bookingDatesTestMap);
+        Map<String,String > bookingdatesMap = obj.bookingDatesMethod("2021-09-09", "2021-09-21");
+        Map<String,Object> expectedData = obj.expectedDataMethod("John","Doe",11111,true,bookingdatesMap);
+        System.out.println("expectedData = " + expectedData);
 
-        // 3. Send The Request And Get The Response
-        Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedData).post("/{first}");
+        //Send the Request and Get the Response
+        Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedData).when().post("/{first}");
         response.prettyPrint();
 
-        // 4. Do Assertion
+        //Do Assertion
+        Map<String , Object> actualData =response.as(HashMap.class);//De-Serialization
+        System.out.println("actualData = " + actualData);
+
+        assertEquals(expectedData.get("firstname"),     ((Map)actualData.get("booking")).get("firstname")    );
+        assertEquals(expectedData.get("lastname"),     ((Map)actualData.get("booking") ).get("lastname")    );
+        assertEquals(expectedData.get("totalprice"),     ((Map)actualData.get("booking") ).get("totalprice")    );
+        assertEquals(expectedData.get("depositpaid"),     ((Map)actualData.get("booking") ).get("depositpaid")    );
+
+        assertEquals(bookingdatesMap.get("checkin"),  ((Map)((Map)actualData.get("booking")).get("bookingdates")).get("checkin")  );
+        assertEquals(bookingdatesMap.get("checkout"),  ((Map)((Map)actualData.get("booking")).get("bookingdates")).get("checkout")  );
+
     }
 }
