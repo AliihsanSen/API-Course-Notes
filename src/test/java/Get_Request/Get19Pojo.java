@@ -3,7 +3,7 @@ package Get_Request;
 import Base_Url.RestfulBaseUrl;
 import org.junit.Test;
 
-public class Get18Pojo extends RestfulBaseUrl {
+public class Get19Pojo extends RestfulBaseUrl {
 
      /*
      Given
