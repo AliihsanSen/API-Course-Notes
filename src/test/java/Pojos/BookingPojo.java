@@ -1,2 +1,4 @@
-package Pojos;public class BookingPojo {
+package Pojos;
+
+public class BookingPojo {
 }
