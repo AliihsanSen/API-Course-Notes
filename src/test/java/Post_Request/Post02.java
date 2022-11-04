@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class Post02 {
 
- /*
+    /*
    Given
        1) https://restful-booker.herokuapp.com/booking
        2) {
@@ -34,10 +34,17 @@ public class Post02 {
                                                }
                                            }
                                         }
-*/
+    */
 
     @Test
     public void post02() {
 
+        // 1. Set The URL
+
+        // 2. Set The Expected Data ( put, post, patch)
+
+        // 3. Send The Request And Get The Response
+
+        // 4. Do Assertion
     }
 }
