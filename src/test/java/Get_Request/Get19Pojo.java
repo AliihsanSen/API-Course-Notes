@@ -7,6 +7,7 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class Get19Pojo extends RestfulBaseUrl {
 
@@ -52,6 +53,19 @@ public class Get19Pojo extends RestfulBaseUrl {
         BookingPojo actualData = response.as(BookingPojo.class);
         System.out.println("actualData = " + actualData);
 
+        assertEquals(expectedData.getFirstname(), actualData.getFirstname());
+        assertEquals(expectedData.getLastname(), actualData.getLastname());
+        assertEquals(expectedData.getTotalprice(), actualData.getTotalprice());
+        assertEquals(expectedData.getDepositpaid(), actualData.getDepositpaid());
+        assertEquals(expectedData.getAdditionalneeds(), actualData.getAdditionalneeds());
+
+        // 1. Yol
+        assertEquals(expectedData.getBookingdates().getCheckin(), actualData.getBookingdates().getCheckin());
+        assertEquals(expectedData.getBookingdates().getCheckout(), actualData.getBookingdates().getCheckout());
+
+        // 2. Yol ==> Tavsiye edilen
+        assertEquals(bookingDatesPojo.getCheckin(), actualData.getBookingdates().getCheckin());
+        assertEquals(bookingDatesPojo.getCheckout(), actualData.getBookingdates().getCheckout());
 
     }
 }
