@@ -28,24 +28,27 @@ public class Get21_ObjectMapper_Pojo extends JsonplaceholderBaseUrl {
 
     // ObjectMapper + Pojo = En İyi Yöntem
     @Test
-    public void get14Pojo(){
+    public void get14Pojo() {
 
         // Set the Url
-        spec.pathParams("first","todos","second",198);
+        spec.pathParams("first", "todos", "second", 198);
 
         // Set the Expected Data
-        JsonPlaceHolderPojo expectedData = new JsonPlaceHolderPojo(10,"quis eius est sint explicabo",true);
+        JsonPlaceHolderPojo expectedData = new JsonPlaceHolderPojo(10, "quis eius est sint explicabo", true);
+        System.out.println("expectedData = " + expectedData);
 
         // Sen the Request and Get the Response
         Response response = given().spec(spec).when().get("/{first}/{second}");
+        response.prettyPrint();
 
         // Do Assertion
-        JsonPlaceHolderPojo actualData = ObjectMapperUtils.convertJsonToJava(response.asString(),JsonPlaceHolderPojo.class);
+        JsonPlaceHolderPojo actualData = ObjectMapperUtils.convertJsonToJava(response.asString(), JsonPlaceHolderPojo.class);
+        System.out.println("actualData = " + actualData);
 
-        assertEquals(200,response.getStatusCode());
-        assertEquals(expectedData.getUserId(),actualData.getUserId());
-        assertEquals(expectedData.getTitle(),actualData.getTitle());
-        assertEquals(expectedData.getCompleted(),actualData.getCompleted());
+        assertEquals(200, response.getStatusCode());
+        assertEquals(expectedData.getUserId(), actualData.getUserId());
+        assertEquals(expectedData.getTitle(), actualData.getTitle());
+        assertEquals(expectedData.getCompleted(), actualData.getCompleted());
 
     }
 
