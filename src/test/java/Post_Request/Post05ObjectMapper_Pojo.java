@@ -1,6 +1,14 @@
 package Post_Request;
 
 import Base_Url.JsonplaceholderBaseUrl;
+import Pojos.JsonPlaceHolderPojo;
+import Utils.ObjectMapperUtils;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class Post05ObjectMapper_Pojo extends JsonplaceholderBaseUrl {
      /*
@@ -22,4 +30,28 @@ public class Post05ObjectMapper_Pojo extends JsonplaceholderBaseUrl {
                                     "id": 201
                                     }
      */
+
+    @Test
+    public void post05ObjectMapper() {
+
+        // Set the Url
+        spec.pathParam("first", "todos");
+
+        // Set the Expected Data
+        JsonPlaceHolderPojo expectedData = new JsonPlaceHolderPojo(55, "Tidy your room", false);
+        System.out.println("expectedData = " + expectedData);
+
+        // Send the Request and Get the Response
+        Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedData).when().post("/{first}");
+        response.prettyPrint();
+
+        // Do Assertion
+        JsonPlaceHolderPojo actualData = ObjectMapperUtils.convertJsonToJava(response.asString(), JsonPlaceHolderPojo.class);
+        System.out.println("actualData = " + actualData);
+
+        assertEquals(201, response.getStatusCode());
+        assertEquals(expectedData.getUserId(), actualData.getUserId());
+        assertEquals(expectedData.getTitle(), actualData.getTitle());
+        assertEquals(expectedData.getCompleted(), actualData.getCompleted());
+    }
 }
