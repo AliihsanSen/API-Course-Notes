@@ -1,2 +1,4 @@
-package Post_Request;public class Post05ObjectMapper_Map {
+package Post_Request;
+
+public class Post05ObjectMapper_Map {
 }
