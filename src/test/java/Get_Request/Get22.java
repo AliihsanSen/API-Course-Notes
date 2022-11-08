@@ -1,7 +1,15 @@
 package Get_Request;
 
 import Base_Url.RestfulBaseUrl;
+import Pojos.BookingDatesPojo;
+import Pojos.BookingPojo;
+import Utils.ObjectMapperUtils;
+import io.restassured.response.Response;
 import org.junit.Test;
+import org.testng.asserts.SoftAssert;
+
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class Get22 extends RestfulBaseUrl {
 
@@ -27,26 +35,27 @@ public class Get22 extends RestfulBaseUrl {
 
     @Test
     public void get15() {
-        //Set the Url
+
+        // Set the Url
         spec.pathParams("first", "booking", "second", 22);
 
-        //Set the expected Data
+        // Set the expected Data
         BookingDatesPojo bookingDatesPojo = new BookingDatesPojo("2018-01-01", "2019-01-01");
         BookingPojo expectedData = new BookingPojo("Guoqiang", "Morante Briones", 111, true, bookingDatesPojo, "Breakfast");
 
-        //Send the Request and Get the Response
+        // Send the Request and Get the Response
         Response response = given().spec(spec).when().get("/{first}/{second}");
         response.prettyPrint();
 
-        //Do Assertion
+        // Do Assertion
         BookingPojo actualData = ObjectMapperUtils.convertJsonToJava(response.asString(), BookingPojo.class);
 
 
-        //Soft Assertion
-        //1. Adım: SoftAssert Objesi Oluştur
+        // Soft Assertion
+        // 1. Adım: SoftAssert Objesi Oluştur
         SoftAssert softAssert = new SoftAssert();
 
-        //2. Adım: Assertion Yap
+        // 2. Adım: Assertion Yap
         softAssert.assertEquals(actualData.getFirstname(), expectedData.getFirstname(), "Firstname uyusmadi");
         softAssert.assertEquals(actualData.getLastname(), expectedData.getLastname(), "Lastname uyusmadi");
         softAssert.assertEquals(actualData.getTotalprice(), expectedData.getTotalprice(), "totalprice uyusmadi");
@@ -56,11 +65,10 @@ public class Get22 extends RestfulBaseUrl {
         softAssert.assertEquals(actualData.getBookingdates().getCheckin(), bookingDatesPojo.getCheckin(), "checkin uyusmadi");
         softAssert.assertEquals(actualData.getBookingdates().getCheckout(), bookingDatesPojo.getCheckout(), "checkout uyusmadi");
 
-        //3. Adım: assertAll() methodunu kullan
+        // 3. Adım: assertAll() methodunu kullan
         softAssert.assertAll();
 
-
-        //Hard Assertion
+        // Hard Assertion
         assertEquals(200, response.statusCode());
         assertEquals(expectedData.getFirstname(), actualData.getFirstname());
         assertEquals(expectedData.getLastname(), actualData.getLastname());
@@ -70,7 +78,5 @@ public class Get22 extends RestfulBaseUrl {
 
         assertEquals(bookingDatesPojo.getCheckin(), actualData.getBookingdates().getCheckin());
         assertEquals(bookingDatesPojo.getCheckout(), actualData.getBookingdates().getCheckout());
-
-
     }
 }
