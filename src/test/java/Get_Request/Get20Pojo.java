@@ -45,7 +45,7 @@ public class Get20Pojo extends GoRestBaseUrl {
         Response response = given().spec(spec).when().get("/{first}/{second}");
         response.prettyPrint();
 
-        //Do Assertion
+        // Do Assertion
         GoRestPojo actualData = response.as(GoRestPojo.class);
         System.out.println("actualData = " + actualData);
 
