@@ -1,6 +1,8 @@
 package Get_Request;
 
-public class Get20Pojo {
+import Base_Url.GoRestBaseUrl;
+
+public class Get20Pojo extends GoRestBaseUrl {
     /*
         Given
             https://gorest.co.in/public/v1/users/2508
@@ -24,15 +26,15 @@ public class Get20Pojo {
 
     @Test
     public void get13Pojo(){
-        //Set the Url
+        // Set the Url
         spec.pathParams("first","users","second",2508);
 
-        //Set the Expected Data
+        // Set the Expected Data
         GoRestDataPojo goRestDataPojo = new GoRestDataPojo(2508,"Sharmila Deshpande VM","deshpande_sharmila_vm@becker.name","female","active");
         GoRestPojo expectedData = new GoRestPojo(null,goRestDataPojo);
         System.out.println("expectedData = " + expectedData);
 
-        //Send the Request and Get the Response
+        // Send the Request and Get the Response
         Response response = given().spec(spec).when().get("/{first}/{second}");
         response.prettyPrint();
 
