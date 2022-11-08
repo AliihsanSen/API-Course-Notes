@@ -1,11 +1,15 @@
 package Post_Request;
 
 import Base_Url.DummyRestApiBaseUrl;
+import Pojos.DummyRestApiDataPojo;
+import Pojos.DummyRestApiResponseBodyPojo;
+import Utils.ObjectMapperUtils;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class Post06 extends DummyRestApiBaseUrl {
     /*
