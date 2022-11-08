@@ -1,2 +1,7 @@
-package Get_Request;public class Get21_ObjectMapper_Pojo {
+package Get_Request;
+
+import Base_Url.JsonplaceholderBaseUrl;
+
+public class Get21_ObjectMapper_Pojo extends JsonplaceholderBaseUrl {
+
 }
