@@ -1,6 +1,13 @@
 package Post_Request;
 
-public class Post06 {
+import Base_Url.DummyRestApiBaseUrl;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
+
+public class Post06 extends DummyRestApiBaseUrl {
     /*
        URL: https://dummy.restapiexample.com/api/v1/create
        HTTP Request Method: POST Request
@@ -59,13 +66,13 @@ public class Post06 {
         }
      */
     @Test
-    public void post06(){
+    public void post06() {
 
         // Set the Url
-        spec.pathParam("first","create");
+        spec.pathParam("first", "create");
 
         // Set the Expected Data
-        DummyRestApiDataPojo expectedData = new DummyRestApiDataPojo("Tom Hanks",111111,23,"Perfect image");
+        DummyRestApiDataPojo expectedData = new DummyRestApiDataPojo("Tom Hanks", 111111, 23, "Perfect image");
 
         System.out.println("expectedData = " + expectedData);
 
@@ -74,14 +81,14 @@ public class Post06 {
         response.prettyPrint();
 
         // Do Assertion
-        DummyRestApiResponseBodyPojo actualData =  ObjectMapperUtils.convertJsonToJava(response.asString(),DummyRestApiResponseBodyPojo.class);
+        DummyRestApiResponseBodyPojo actualData = ObjectMapperUtils.convertJsonToJava(response.asString(), DummyRestApiResponseBodyPojo.class);
         System.out.println("actualData = " + actualData);
 
-        assertEquals(200,response.statusCode());
-        assertEquals(expectedData.getEmployee_name(),actualData.getData().getEmployee_name());
-        assertEquals(expectedData.getEmployee_salary(),actualData.getData().getEmployee_salary());
-        assertEquals(expectedData.getEmployee_age(),actualData.getData().getEmployee_age());
-        assertEquals(expectedData.getProfile_image(),actualData.getData().getProfile_image());
+        assertEquals(200, response.statusCode());
+        assertEquals(expectedData.getEmployee_name(), actualData.getData().getEmployee_name());
+        assertEquals(expectedData.getEmployee_salary(), actualData.getData().getEmployee_salary());
+        assertEquals(expectedData.getEmployee_age(), actualData.getData().getEmployee_age());
+        assertEquals(expectedData.getProfile_image(), actualData.getData().getProfile_image());
         // assertEquals("Successfully! Record has been added.",actualData.getMessage()); ==> Hard Codding
 
     }
