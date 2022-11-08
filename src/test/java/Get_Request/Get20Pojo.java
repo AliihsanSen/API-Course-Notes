@@ -1,6 +1,13 @@
 package Get_Request;
 
 import Base_Url.GoRestBaseUrl;
+import Pojos.GoRestDataPojo;
+import Pojos.GoRestPojo;
+import io.restassured.response.Response;
+import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class Get20Pojo extends GoRestBaseUrl {
     /*
