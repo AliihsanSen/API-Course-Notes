@@ -3,6 +3,7 @@ package Post_Request;
 import Base_Url.RestfulBaseUrl;
 import Pojos.BookingDatesPojo;
 import Pojos.BookingPojo;
+import Pojos.BookingResponseBodyPojo;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
