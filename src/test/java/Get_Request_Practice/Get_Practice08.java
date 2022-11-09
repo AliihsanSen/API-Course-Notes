@@ -50,7 +50,7 @@ public class Get_Practice08 extends GMIBankBaseURL {
         Response response = RestAssured.given().spec(spec01).headers("Authorization", "Bearer " + generateToken())
                 .when()
                 .get("/{first}/{second}");
-        //response.prettyPrint();
+        response.prettyPrint();
 
         // 4) DOĞRULAMA
 
