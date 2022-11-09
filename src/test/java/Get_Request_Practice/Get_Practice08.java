@@ -54,9 +54,9 @@ public class Get_Practice08 extends GMIBankBaseURL {
 
         // 4) DOĞRULAMA
 
-        //1) MATCHERS CLASS
-        //2) JSON PATH
-        //3) De-Serialization
+        // 1) MATCHERS CLASS
+        // 2) JSON PATH
+        // 3) De-Serialization
         Map<String, Object> actualData = response.as(HashMap.class);
         System.out.println(actualData);
 
