@@ -1,6 +1,7 @@
 package Delete_Request;
 
 import Base_Url.DummyRestApiBaseUrl;
+import Pojos.DummyRestApiDeletePojo;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -37,8 +38,12 @@ public class Delete02 extends DummyRestApiBaseUrl {
 
         spec.pathParams("first", "delete", "second", 2);
 
+        DummyRestApiDeletePojo expectedData = new DummyRestApiDeletePojo("success","2","Successfully! Record has been deleted");
+        System.out.println("expectedData = " + expectedData);
+
         Response response = given().spec(spec).when().delete("/{first}/{second}");
         response.prettyPrint();
+
 
 
     }
