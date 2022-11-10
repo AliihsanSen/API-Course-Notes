@@ -4,8 +4,11 @@ import Base_Url.DummyRestApiBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
 
+import java.util.Collections;
+import java.util.List;
+
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 
 public class Get23 extends DummyRestApiBaseUrl {
     /*
@@ -50,6 +53,12 @@ public class Get23 extends DummyRestApiBaseUrl {
         response.prettyPrint();
 
         // Do assertion
-        response.then().assertThat().body("data.id", hasSize(24));
+       response.then().assertThat().body("data.id", hasSize(24),
+                "data.employee_name", hasItems("Tiger Nixon", "Garrett Winters"));
+
+       List<Integer> ages = response.jsonPath().getList("data.employee_age");
+        System.out.println("ages = " + ages);
+        Collections.sort(ages);
+        System.out.println("Sorted ages = " + ages);
     }
 }
