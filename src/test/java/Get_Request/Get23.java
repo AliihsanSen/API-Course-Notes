@@ -68,8 +68,8 @@ public class Get23 extends DummyRestApiBaseUrl {
         assertEquals(66, (int) (ages.get(ages.size() - 1)));
 
         // The name of the lowest age is "Tatyana Fitzpatrick"
-        String lowestAgesdEmployee = response.jsonPath().getString("data.finAll{it.employee_age==" + ages.get(0) + "}.employee_name");
-        System.out.println("lowestAgesdEmployee = " + lowestAgesdEmployee);
+        String lowestAgedEmployee= response.jsonPath().getString("data.findAll{it.employee_age == "+ages.get(0)+"}.employee_name");
+        System.out.println("lowestAgedEmployee = " + lowestAgedEmployee);
 
     }
 }
