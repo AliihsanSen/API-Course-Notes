@@ -1,8 +1,9 @@
 package Delete_Request;
 
+import Base_Url.DummyRestApiBaseUrl;
 import org.junit.Test;
 
-public class Delete02 {
+public class Delete02 extends DummyRestApiBaseUrl {
 
     /*
      URL: https://dummy.restapiexample.com/api/v1/delete/2
@@ -12,10 +13,26 @@ public class Delete02 {
                  ii) "status" is "success"
                  iii) "data" is "2"
                  iv) "message" is "Successfully! Record has been deleted"
+
+     Given
+        URL: https://dummy.restapiexample.com/api/v1/delete/2
+     When
+        HTTP Request Method: DELETE Request
+        Test Case: Type by using Gherkin Language
+     Then
+        i) Status code is 200
+     And
+        ii) "status" is "success"
+     And
+        iii) "data" is "2"
+     And
+        iv) "message" is "Successfully! Record has been deleted"
        */
 
     @Test
     public void delete02() {
+
+        spec.pathParams("first","delete","second",2);
 
     }
 }
