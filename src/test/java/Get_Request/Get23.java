@@ -9,6 +9,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertEquals;
 
 public class Get23 extends DummyRestApiBaseUrl {
     /*
@@ -61,7 +62,8 @@ public class Get23 extends DummyRestApiBaseUrl {
         Collections.sort(ages);
         System.out.println("Sorted ages = " + ages);
 
-        System.out.println("En büyük yaşta çalışan : "+ages.get(ages.size() - 1));
+        System.out.println("En büyük yaşta çalışan : " + ages.get(ages.size() - 1));
+        assertEquals(66, ages.size());
 
     }
 }
