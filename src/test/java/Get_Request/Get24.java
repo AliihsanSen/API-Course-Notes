@@ -3,10 +3,12 @@ package Get_Request;
 import Base_Url.DummyRestApiBaseUrl;
 import Pojos.DummyRestApiDataPojo;
 import Pojos.DummyRestApiResponseBodyPojo;
+import Utils.ObjectMapperUtils;
 import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class Get24 extends DummyRestApiBaseUrl {
     /*
@@ -38,5 +40,12 @@ public class Get24 extends DummyRestApiBaseUrl {
 
         Response response = given().spec(spec).when().get("/{first}/{second}");
         response.prettyPrint();
+
+        DummyRestApiResponseBodyPojo actualData = ObjectMapperUtils.convertJsonToJava(response.asString(), DummyRestApiResponseBodyPojo.class);
+
+        // Status code is 200
+        assertEquals(200, response.statusCode());
+
+
     }
 }
