@@ -60,6 +60,10 @@ public class Put02 extends DummyRestApiBaseUrl {
         assertEquals(expectedData.getStatus(), actualData.getStatus());
         assertEquals(expectedData.getMessage(), actualData.getMessage());
         assertEquals(dummyRestApiDataPojo.getEmployee_name(), actualData.getData().getEmployee_name());
+        assertEquals(dummyRestApiDataPojo.getEmployee_age(), actualData.getData().getEmployee_age());
+        assertEquals(dummyRestApiDataPojo.getEmployee_salary(), actualData.getData().getEmployee_salary());
+        assertEquals(dummyRestApiDataPojo.getProfile_image(), actualData.getData().getProfile_image());
+
 
     }
 }
