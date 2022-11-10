@@ -44,6 +44,13 @@ public class Get24 extends DummyRestApiBaseUrl {
         DummyRestApiResponseBodyPojo actualData = ObjectMapperUtils.convertJsonToJava(response.asString(), DummyRestApiResponseBodyPojo.class);
 
         assertEquals(200, response.statusCode());
+        assertEquals(expectedData.getStatus(),actualData.getStatus());
+        assertEquals(expectedData.getMessage(),actualData.getMessage());
+
+        assertEquals(expectedData.getData().getEmployee_name(),actualData.getData().getEmployee_name());
+        assertEquals(expectedData.getData().getEmployee_salary(),actualData.getData().getEmployee_salary());
+        assertEquals(expectedData.getData().getEmployee_age(),actualData.getData().getEmployee_age());
+        assertEquals(expectedData.getData().getProfile_image(),actualData.getData().getProfile_image());
 
 
     }
