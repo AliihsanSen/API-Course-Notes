@@ -43,7 +43,6 @@ public class Get24 extends DummyRestApiBaseUrl {
 
         DummyRestApiResponseBodyPojo actualData = ObjectMapperUtils.convertJsonToJava(response.asString(), DummyRestApiResponseBodyPojo.class);
 
-        // Status code is 200
         assertEquals(200, response.statusCode());
 
 
