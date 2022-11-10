@@ -1,6 +1,8 @@
 package API_Practice;
 
 import Base_Url.GMIBankBaseURL;
+import Pojos.GMIBankCountryPostPojo;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,20 +19,20 @@ public class Post_Request01 extends GMIBankBaseURL {
     public void test10(){
         spec01.pathParam("first", "tp-countries");
 
-        CountryPost countryPost = new CountryPost("Batch81");
-        System.out.println("countryPost = " + countryPost);
+        GMIBankCountryPostPojo GMIBankCountryPostPojo = new GMIBankCountryPostPojo("Batch81");
+        System.out.println("countryPost = " + GMIBankCountryPostPojo);
 
         Response response = given()
                 .headers("Authorization", "Bearer " + generateToken(), "Content-Type", ContentType.JSON)
-                .spec(spec01).when().body(countryPost)
+                .spec(spec01).when().body(GMIBankCountryPostPojo)
                 .post("/{first}");
 
         response.prettyPrint();
 
-        CountryPost actualData = response.as(CountryPost.class);
+        GMIBankCountryPostPojo actualData = response.as(GMIBankCountryPostPojo.class);
         System.out.println("actualData = " + actualData);
 
         // Doğrulama Yaptık
-        Assert.assertEquals(countryPost.getName(), actualData.getName());
+        Assert.assertEquals(GMIBankCountryPostPojo.getName(), actualData.getName());
     }
 }
