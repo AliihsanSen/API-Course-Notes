@@ -1,6 +1,8 @@
 package Get_Request;
 
 import Base_Url.DummyRestApiBaseUrl;
+import Pojos.DummyRestApiDataPojo;
+import Pojos.DummyRestApiResponseBodyPojo;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -28,7 +30,11 @@ public class Get24 extends DummyRestApiBaseUrl {
 
     @Test
     public void get24() {
-        spec.pathParams("first", "employee","second",1);
+        spec.pathParams("first", "employee", "second", 1);
+
+        DummyRestApiDataPojo dummyRestApiDataPojo = new DummyRestApiDataPojo("Tiger Nixon", 320800, 61, "");
+        DummyRestApiResponseBodyPojo expectedData = new DummyRestApiResponseBodyPojo("success", dummyRestApiDataPojo, "Successfully! Record has been fetched.");
+        System.out.println("expectedData = " + expectedData);
 
         Response response = given().spec(spec).when().get("/{first}/{second}");
         response.prettyPrint();
