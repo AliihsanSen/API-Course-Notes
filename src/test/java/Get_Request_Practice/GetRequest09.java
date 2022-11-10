@@ -50,7 +50,7 @@ public class GetRequest09 extends GMIBankBaseURL {
         Response response = given().spec(spec01).headers("Authorization", "Bearer " + generateToken())
                 .when()
                 .get("/{bir}/{iki}");
-        //response.prettyPrint();
+        response.prettyPrint();
 
         Customer actualData = response.as(Customer.class);
         System.out.println(actualData);
