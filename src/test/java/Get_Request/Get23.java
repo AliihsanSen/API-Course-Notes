@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.hasSize;
 
 public class Get23 extends DummyRestApiBaseUrl {
     /*
@@ -49,5 +50,6 @@ public class Get23 extends DummyRestApiBaseUrl {
         response.prettyPrint();
 
         // Do assertion
+        response.then().assertThat().body("data.id", hasSize(24));
     }
 }
