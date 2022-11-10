@@ -3,7 +3,11 @@ package Put_Request;
 import Base_Url.DummyRestApiBaseUrl;
 import Pojos.DummyRestApiDataPojo;
 import Pojos.DummyRestApiResponseBodyPojo;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
 
 public class Put02 extends DummyRestApiBaseUrl {
 
@@ -39,6 +43,9 @@ public class Put02 extends DummyRestApiBaseUrl {
         DummyRestApiDataPojo dummyRestApiDataPojo = new DummyRestApiDataPojo("Ali Can", 111111, 23, "Perfect image");
         DummyRestApiResponseBodyPojo expectedData = new DummyRestApiResponseBodyPojo("success", dummyRestApiDataPojo, "Successfully! Record has been updated.");
         System.out.println("expectedData = " + expectedData);
+
+        Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedData).put("/{first}/{second}");
+        response.prettyPrint();
 
     }
 }
