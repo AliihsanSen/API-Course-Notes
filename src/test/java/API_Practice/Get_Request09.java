@@ -4,6 +4,7 @@ import Base_Url.GMIBankBaseURL;
 import Pojos.GMIBankCountryPojo;
 import Pojos.GMIBankCustomerPojo;
 import Pojos.GMIBankUserPojo;
+import Utils.JsonUtil;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -82,5 +83,12 @@ public class Get_Request09 extends GMIBankBaseURL {
         assertEquals(expectedData.getUser().getImageUrl(), actualData.getUser().getImageUrl());
         assertEquals(expectedData.getUser().getResetDate(), actualData.getUser().getResetDate());
 
+        // Object Mapper
+        GMIBankCustomerPojo actualData2 = JsonUtil.convertJsonToJava(response.asString(), GMIBankCustomerPojo.class);
+        System.out.println("actualData2 = " + actualData2);
+
+        assertEquals(expectedData.getId(), actualData2.getId());
+        assertEquals(expectedData.getUser().getLogin(), actualData2.getUser().getLogin());
+        assertEquals(expectedData.getCountry().getName(), actualData2.getCountry().getName());
     }
 }
