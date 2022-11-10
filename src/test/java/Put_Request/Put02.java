@@ -1,6 +1,7 @@
 package Put_Request;
 
 import Base_Url.DummyRestApiBaseUrl;
+import org.junit.Test;
 
 public class Put02 extends DummyRestApiBaseUrl {
 
@@ -28,4 +29,8 @@ public class Put02 extends DummyRestApiBaseUrl {
                         "message": "Successfully! Record has been updated."
                     }
      */
+
+    @Test
+    public void put02() {
+    }
 }
