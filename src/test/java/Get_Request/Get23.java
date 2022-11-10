@@ -54,16 +54,22 @@ public class Get23 extends DummyRestApiBaseUrl {
         response.prettyPrint();
 
         // Do assertion
+        // There are 24 employees
+        // "Tiger Nixon" and "Garrett Winters" are among the employees
         response.then().assertThat().body("data.id", hasSize(24),
                 "data.employee_name", hasItems("Tiger Nixon", "Garrett Winters"));
 
+        // The greatest age is 66
         List<Integer> ages = response.jsonPath().getList("data.employee_age");
         System.out.println("ages = " + ages);
         Collections.sort(ages);
         System.out.println("Sorted ages = " + ages);
-
         System.out.println("En büyük yaşta çalışan : " + ages.get(ages.size() - 1));
-        assertEquals(66, ages.size());
+        assertEquals(66, (int) (ages.get(ages.size() - 1)));
+
+        // The name of the lowest age is "Tatyana Fitzpatrick"
+        String lowestAgesdEmployee = response.jsonPath().getString("data.finAll{it.employee_age==" + ages.get(0) + "}.employee_name");
+        System.out.println("lowestAgesdEmployee = " + lowestAgesdEmployee);
 
     }
 }
