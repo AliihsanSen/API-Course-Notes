@@ -1,4 +1,4 @@
-package Get_Request_Practice;
+package API_Practice;
 
 import Base_Url.GMIBankBaseURL;
 import io.restassured.path.json.JsonPath;

@@ -1,4 +1,4 @@
-package Get_Request_Practice;
+package API_Practice;
 
 import Base_Url.GMIBankBaseURL;
 import Pojos.GMIBankCountryPojo;
@@ -10,7 +10,7 @@ import org.junit.Test;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
-public class GetRequest09 extends GMIBankBaseURL {
+public class Get_Request09 extends GMIBankBaseURL {
      /*
     http://www.gmibank.com/api/tp-customers/110452
      */
