@@ -1,7 +1,13 @@
 package Get_Request_Practice;
 
 import Base_Url.GMIBankBaseURL;
+import Pojos.Country;
+import Pojos.Customer;
+import Pojos.User;
+import io.restassured.response.Response;
 import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
 
 public class GetRequest09 extends GMIBankBaseURL {
      /*
@@ -9,7 +15,7 @@ public class GetRequest09 extends GMIBankBaseURL {
      */
 
     @Test
-    public void test09(){
+    public void test09() {
 
         spec01.pathParams("bir", "tp-customers", "iki", 110452);
 
@@ -30,13 +36,13 @@ public class GetRequest09 extends GMIBankBaseURL {
      */
 
         //Account [] accounts;
-        User user = new User(110016,"leopoldo.reinger", "Jasmine", "Stehr",
+        User user = new User(110016, "leopoldo.reinger", "Jasmine", "Stehr",
                 "marni.zboncak@yahoo.com", true, "en", null, null);
 
         Country country = new Country(3, "USA", null);
 
         Customer expectedData = new Customer(110452, "Jasmine", "Stehr", "V", "marni.zboncak@yahoo.com"
-                , "463-609-2097", "1-112-497-0270", "16525", "14387 Al Ridge5343 Bert Burgs","Waltermouth"
+                , "463-609-2097", "1-112-497-0270", "16525", "14387 Al Ridge5343 Bert Burgs", "Waltermouth"
                 , "761-59-2911", "2021-11-28T21:00:00Z", false, country, "California", user);
 
         System.out.println("expectedData = " + expectedData);
