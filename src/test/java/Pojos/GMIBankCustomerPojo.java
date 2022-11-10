@@ -3,7 +3,7 @@ package Pojos;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Customer {
+public class GMIBankCustomerPojo {
 
 
         /*
@@ -56,9 +56,9 @@ public class Customer {
     private String ssn;
     private String createDate;
     private boolean zelleEnrolled;
-    private Country country;
+    private GMIBankCountryPojo GMIBankCountryPojo;
     private String state;
-    private User user;
+    private GMIBankUserPojo GMIBankUserPojo;
 
     public int getId() {
         return id;
@@ -164,12 +164,12 @@ public class Customer {
         this.zelleEnrolled = zelleEnrolled;
     }
 
-    public Country getCountry() {
-        return country;
+    public GMIBankCountryPojo getCountry() {
+        return GMIBankCountryPojo;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setCountry(GMIBankCountryPojo GMIBankCountryPojo) {
+        this.GMIBankCountryPojo = GMIBankCountryPojo;
     }
 
     public String getState() {
@@ -180,18 +180,18 @@ public class Customer {
         this.state = state;
     }
 
-    public User getUser() {
-        return user;
+    public GMIBankUserPojo getUser() {
+        return GMIBankUserPojo;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(GMIBankUserPojo GMIBankUserPojo) {
+        this.GMIBankUserPojo = GMIBankUserPojo;
     }
 
-    public Customer() {
+    public GMIBankCustomerPojo() {
     }
 
-    public Customer(int id, String firstName, String lastName, String middleInitial, String email, String mobilePhoneNumber, String phoneNumber, String zipCode, String address, String city, String ssn, String createDate, boolean zelleEnrolled, Country country, String state, User user) {
+    public GMIBankCustomerPojo(int id, String firstName, String lastName, String middleInitial, String email, String mobilePhoneNumber, String phoneNumber, String zipCode, String address, String city, String ssn, String createDate, boolean zelleEnrolled, GMIBankCountryPojo GMIBankCountryPojo, String state, GMIBankUserPojo GMIBankUserPojo) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -205,9 +205,9 @@ public class Customer {
         this.ssn = ssn;
         this.createDate = createDate;
         this.zelleEnrolled = zelleEnrolled;
-        this.country = country;
+        this.GMIBankCountryPojo = GMIBankCountryPojo;
         this.state = state;
-        this.user = user;
+        this.GMIBankUserPojo = GMIBankUserPojo;
     }
 
     @Override
@@ -226,9 +226,9 @@ public class Customer {
                 ", ssn='" + ssn + '\'' +
                 ", createDate='" + createDate + '\'' +
                 ", zelleEnrolled=" + zelleEnrolled +
-                ", country=" + country +
+                ", country=" + GMIBankCountryPojo +
                 ", state='" + state + '\'' +
-                ", user=" + user +
+                ", user=" + GMIBankUserPojo +
                 '}';
     }
 }

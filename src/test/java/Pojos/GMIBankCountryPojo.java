@@ -3,7 +3,7 @@ package Pojos;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Country {
+public class GMIBankCountryPojo {
         /*
         "country": {
         "id": 3,
@@ -40,10 +40,10 @@ public class Country {
         this.states = states;
     }
 
-    public Country() {
+    public GMIBankCountryPojo() {
     }
 
-    public Country(int id, String name, String states) {
+    public GMIBankCountryPojo(int id, String name, String states) {
         this.id = id;
         this.name = name;
         this.states = states;

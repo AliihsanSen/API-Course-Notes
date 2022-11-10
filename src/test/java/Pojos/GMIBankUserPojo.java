@@ -3,7 +3,7 @@ package Pojos;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
+public class GMIBankUserPojo {
 
         /*
             "user": {
@@ -101,10 +101,10 @@ public class User {
         this.resetDate = resetDate;
     }
 
-    public User() {
+    public GMIBankUserPojo() {
     }
 
-    public User(int id, String login, String firstName, String lastName, String email, boolean activated, String langKey, String imageUrl, String resetDate) {
+    public GMIBankUserPojo(int id, String login, String firstName, String lastName, String email, boolean activated, String langKey, String imageUrl, String resetDate) {
         this.id = id;
         this.login = login;
         this.firstName = firstName;

@@ -3,7 +3,7 @@ package Pojos;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Account {
+public class GMIBankAccountPojo {
     private Integer id;
     private String description;
     private Integer balance;
@@ -14,7 +14,7 @@ public class Account {
     private String employee;
     private String accountlogs;
 
-    public Account(Integer id, String description, Integer balance, String accountType, String accountStatusType, String createDate, String closedDate, String employee, String accountlogs) {
+    public GMIBankAccountPojo(Integer id, String description, Integer balance, String accountType, String accountStatusType, String createDate, String closedDate, String employee, String accountlogs) {
         this.id = id;
         this.description = description;
         this.balance = balance;
@@ -26,7 +26,7 @@ public class Account {
         this.accountlogs = accountlogs;
     }
 
-    public Account() {
+    public GMIBankAccountPojo() {
     }
 
     public Integer getId() {
