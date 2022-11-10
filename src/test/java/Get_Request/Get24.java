@@ -1,7 +1,10 @@
 package Get_Request;
 
 import Base_Url.DummyRestApiBaseUrl;
+import io.restassured.response.Response;
 import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
 
 public class Get24 extends DummyRestApiBaseUrl {
     /*
@@ -25,5 +28,8 @@ public class Get24 extends DummyRestApiBaseUrl {
 
     @Test
     public void get24() {
+        spec.pathParams("first", "employee","second",1);
+
+        Response response = given().spec(spec).when().get("/{first}/{second}");
     }
 }
