@@ -1,7 +1,20 @@
 package API_Practice;
 
 import Base_Url.GMIBankBaseURL;
+import Pojos.GMIBankCustomerPojo;
+import Utils.ReadText;
+import Utils.WriteToText;
+import io.restassured.response.Response;
+import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static io.restassured.RestAssured.given;
 
 public class GMIBank01 extends GMIBankBaseURL {
 
@@ -16,19 +29,19 @@ public class GMIBank01 extends GMIBankBaseURL {
      */
 
     @Test
-    public void test10() throws JsonProcessingException {
+    public void test10() throws IOException {
 
-        Customer[] customers;
+        GMIBankCustomerPojo[] customers;
 
         spec01.pathParam("bir", "tp-customers");
 
         Response response = given().spec(spec01).headers("Authorization", "Bearer " + generateToken())
                 .when()
                 .get("/{bir}");
-        //response.prettyPrint();
+        // response.prettyPrint();
 
         ObjectMapper obj = new ObjectMapper();
-        customers = obj.readValue(response.asString(), Customer[].class);
+        customers = obj.readValue(response.asString(), GMIBankCustomerPojo[].class);
 
         //1) Tüm Customer bilgilerini ekrana yazdırın.
         for ( int i = 0; i<customers.length; i++)
@@ -39,7 +52,7 @@ public class GMIBank01 extends GMIBankBaseURL {
             System.out.println("SSN ler: " +customers[i].getSsn());
 
         //3) Tüm Customer SSN lerini text dosyası olarak kaydedin
-        String fileName = "src/test/java/day04/SSNNumbers.txt";
+        String fileName = "src/test/java/API_Practice/SSNNumbers.txt";
         WriteToText.saveSSNData(fileName, customers);
 
         //4) Olusturduğunuz text dosyasından  SSNleri okuyarak
@@ -53,7 +66,7 @@ public class GMIBank01 extends GMIBankBaseURL {
 
         Assert.assertTrue("SSNLER eşleşmedi", actualSNN.containsAll(expectedSSN));
 
-        String fileName1 = "src/test/java/day04/AllData.txt";
+        String fileName1 = "src/test/java/API_Practice/AllData.txt";
         WriteToText.saveCustomersData(fileName1, customers);
 
 
