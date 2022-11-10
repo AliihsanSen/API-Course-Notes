@@ -3,11 +3,16 @@ package Put_Request;
 import Base_Url.DummyRestApiBaseUrl;
 import Pojos.DummyRestApiDataPojo;
 import Pojos.DummyRestApiResponseBodyPojo;
+import Utils.ObjectMapperUtils;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class Put02 extends DummyRestApiBaseUrl {
 
@@ -44,8 +49,17 @@ public class Put02 extends DummyRestApiBaseUrl {
         DummyRestApiResponseBodyPojo expectedData = new DummyRestApiResponseBodyPojo("success", dummyRestApiDataPojo, "Successfully! Record has been updated.");
         System.out.println("expectedData = " + expectedData);
 
-        Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedData).put("/{first}/{second}");
+        Response response = given().spec(spec).contentType(ContentType.JSON).body(dummyRestApiDataPojo).put("/{first}/{second}");
         response.prettyPrint();
+        DummyRestApiResponseBodyPojo actualData = ObjectMapperUtils.convertJsonToJava(response.asString(), DummyRestApiResponseBodyPojo.class);
+
+        // Status code is 200
+        assertEquals(200, response.statusCode());
+
+        // Response body should be like the following
+        assertEquals(expectedData.getStatus(), actualData.getStatus());
+        assertEquals(expectedData.getMessage(), actualData.getMessage());
+        assertEquals(dummyRestApiDataPojo.getEmployee_name(), actualData.getData().getEmployee_name());
 
     }
 }
