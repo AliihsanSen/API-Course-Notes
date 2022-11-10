@@ -2,6 +2,7 @@ package Delete_Request;
 
 import Base_Url.DummyRestApiBaseUrl;
 import Pojos.DummyRestApiDeletePojo;
+import Utils.ObjectMapperUtils;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -43,6 +44,9 @@ public class Delete02 extends DummyRestApiBaseUrl {
 
         Response response = given().spec(spec).when().delete("/{first}/{second}");
         response.prettyPrint();
+
+        DummyRestApiDeletePojo actualData = ObjectMapperUtils.convertJsonToJava(response.asString(),DummyRestApiDeletePojo.class);
+        System.out.println("actualData = " + actualData);
 
 
 
