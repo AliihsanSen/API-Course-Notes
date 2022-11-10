@@ -8,6 +8,7 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class GetRequest09 extends GMIBankBaseURL {
      /*
@@ -53,7 +54,33 @@ public class GetRequest09 extends GMIBankBaseURL {
         response.prettyPrint();
 
         GMIBankCustomerPojo actualData = response.as(GMIBankCustomerPojo.class);
-        System.out.println(actualData);
+        System.out.println("actualData = " + actualData);
+
+        assertEquals(expectedData.getId(), actualData.getId());
+        assertEquals(expectedData.getFirstName(), actualData.getFirstName());
+        assertEquals(expectedData.getLastName(), actualData.getLastName());
+        assertEquals(expectedData.getMiddleInitial(), actualData.getMiddleInitial());
+        assertEquals(expectedData.getEmail(), actualData.getEmail());
+        assertEquals(expectedData.getMobilePhoneNumber(), actualData.getMobilePhoneNumber());
+        assertEquals(expectedData.getPhoneNumber(), actualData.getPhoneNumber());
+        assertEquals(expectedData.getZipCode(), actualData.getZipCode());
+        assertEquals(expectedData.getAddress(), actualData.getAddress());
+        assertEquals(expectedData.getCity(), actualData.getCity());
+        assertEquals(expectedData.getSsn(), actualData.getSsn());
+        assertEquals(expectedData.getCreateDate(), actualData.getCreateDate());
+        assertEquals(expectedData.isZelleEnrolled(), actualData.isZelleEnrolled());
+        assertEquals(expectedData.getCountry().getId(), actualData.getCountry().getId());
+        assertEquals(expectedData.getCountry().getName(), actualData.getCountry().getName());
+        assertEquals(expectedData.getCountry().getStates(), actualData.getCountry().getStates());
+        assertEquals(expectedData.getState(), actualData.getState());
+        assertEquals(expectedData.getUser().getId(), actualData.getUser().getId());
+        assertEquals(expectedData.getUser().getLogin(), actualData.getUser().getLogin());
+        assertEquals(expectedData.getUser().getFirstName(), actualData.getUser().getFirstName());
+        assertEquals(expectedData.getUser().getLastName(), actualData.getUser().getLastName());
+        assertEquals(expectedData.getUser().getEmail(), actualData.getUser().getEmail());
+        assertEquals(expectedData.getUser().getLangKey(), actualData.getUser().getLangKey());
+        assertEquals(expectedData.getUser().getImageUrl(), actualData.getUser().getImageUrl());
+        assertEquals(expectedData.getUser().getResetDate(), actualData.getUser().getResetDate());
 
     }
 }
