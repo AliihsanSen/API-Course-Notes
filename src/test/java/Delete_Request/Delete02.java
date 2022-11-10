@@ -1,7 +1,10 @@
 package Delete_Request;
 
 import Base_Url.DummyRestApiBaseUrl;
+import io.restassured.response.Response;
 import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
 
 public class Delete02 extends DummyRestApiBaseUrl {
 
@@ -32,7 +35,11 @@ public class Delete02 extends DummyRestApiBaseUrl {
     @Test
     public void delete02() {
 
-        spec.pathParams("first","delete","second",2);
+        spec.pathParams("first", "delete", "second", 2);
+
+        Response response = given().spec(spec).when().delete("/{first}/{second}");
+        response.prettyPrint();
+
 
     }
 }
