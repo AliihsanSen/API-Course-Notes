@@ -53,12 +53,15 @@ public class Get23 extends DummyRestApiBaseUrl {
         response.prettyPrint();
 
         // Do assertion
-       response.then().assertThat().body("data.id", hasSize(24),
+        response.then().assertThat().body("data.id", hasSize(24),
                 "data.employee_name", hasItems("Tiger Nixon", "Garrett Winters"));
 
-       List<Integer> ages = response.jsonPath().getList("data.employee_age");
+        List<Integer> ages = response.jsonPath().getList("data.employee_age");
         System.out.println("ages = " + ages);
         Collections.sort(ages);
         System.out.println("Sorted ages = " + ages);
+
+        System.out.println("En büyük yaşta çalışan : "+ages.get(ages.size() - 1));
+
     }
 }
