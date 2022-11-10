@@ -31,5 +31,6 @@ public class Get24 extends DummyRestApiBaseUrl {
         spec.pathParams("first", "employee","second",1);
 
         Response response = given().spec(spec).when().get("/{first}/{second}");
+        response.prettyPrint();
     }
 }
